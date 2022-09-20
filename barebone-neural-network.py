@@ -1,34 +1,28 @@
-inputs = [1, 2, 3, 2.5]
+import numpy as np
 
-weight1 = [0.2, 0.8, -0.5, 1.0]
-weight2 = [0.5, -0.91, 0.26, -0.5]
-weight3 = [-0.26, -0.27, 0.17, 0.87]
+inputs = [[1, 2, 3, 2.5],
+             [2.0, 5.0, -1.0, 2.0],
+            [-1.5, 2.7, 3.3, -0.8]
+        ]
 
-weights = [[0.2, 0.8, -0.5, 1.0], [0.5, -0.91, 0.26, -0.5], [-0.26, -0.27, 0.17, 0.87]]
+weights = [ [0.2, 0.8, -0.5, 1.0], 
+            [0.5, -0.91, 0.26, -0.5], 
+            [-0.26, -0.27, 0.17, 0.87]]
 
-bias = [2, 3, 0.5]
+biases = [2, 3, 0.5]
 
-output = []
 
-bias_index = 0
-sum = 0
+weights2 = [[0.1, -0.14, 0.5],
+            [-0.5, 0.12, -0.33],
+            [-0.44, 0.73, -0.13]]
 
-for weight in  weights:
-    print(weight)
-    for i in range(0,4):
-        print(f"{inputs[i]}*{weight[i]}")
-        sum+= inputs[i]*weight[i]
-    print(f"sum is{sum}")
-    #sum+= bias[bias_index]
-    #bias_index += 1
-    #print(sum)
-    output.append(sum + bias[bias_index])
-    bias_index += 1
+biases2 = [-1, 2, -0.5]
 
-""" output = [inputs[0]*weight1[0] + inputs[1]*weight1[1] + inputs[2]*weight1[2] + inputs[3]*weight1[3] + bias[0],
-          inputs[0]*weight2[0] + inputs[1]*weight2[1] + inputs[2]*weight2[2] + inputs[3]*weight2[3] + bias[1],
-          inputs[0]*weight3[0] + inputs[1]*weight3[1] + inputs[2]*weight3[2] + inputs[3]*weight3[3] + bias[2]
 
-] """
 
-print(output)
+layer1_outputs = np.dot(inputs,np.array(weights).T) + biases
+layer2_outputs = np.dot(layer1_outputs, np.array(weights2).T) + biases2
+
+
+print(layer1_outputs)
+print(layer2_outputs)
